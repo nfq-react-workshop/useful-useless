@@ -3,29 +3,30 @@
 Susipažinsime su naudojamomis technologijomis ir įrankiais, kuriuos naudosime viso kurso metu. Pasiruošime darbinę aplinką ir sukursime pirmą React komponentą.
 
 ### Agenda
-* [IDE paruošimas](#ide)
-* [Node.js ir npm](#node)
-* [package.json ir package-lock.json](#lock)
-* [Dependency tipai](#deps)
-* [ES6 įvadas ir pagrindai](#es6)
-* [React sąvokos](#react)
-### <a name="ide"></a> IDE paruošimas
+1. [IDE paruošimas](#ide)
+2. [Node.js ir npm](#node)
+3. [package.json ir package-lock.json](#lock)
+4. [Dependency tipai](#deps)
+5. [Test drive](#test)
+6. [ES6 įvadas ir pagrindai](#es6)
+7. [React sąvokos](#react)
+### 1<a name="ide"></a> IDE paruošimas
 Neturintiems nei phpStorm, nei webStorm, nei VS Code rekomenduojame įsidiegti VS Code.
-#### VS Code paruošimas
+#### 1.1 VS Code paruošimas
 <kbd>⌘</kbd> + <kbd>P</kbd> (<kbd>Ctrl</kbd> + <kbd>P</kbd>)
 ```
-$ ext install dbaeumer.vscode-eslint
-$ ext install esbenp.prettier-vscode
-$ ext install dzannotti.vscode-babel-coloring
+ext install dbaeumer.vscode-eslint
+ext install esbenp.prettier-vscode
+ext install dzannotti.vscode-babel-coloring
 ```
-#### phpStorm paruošimas
+#### 1.2 phpStorm paruošimas
 <kbd>⌘</kbd> + <kbd>,</kbd> (<kbd>Ctrl</kbd> + <kbd>,</kbd>)
 * Language and frameworks > javascript version: React/JSX
 * Language and frameworks > Javascript > Code quality tools > eslint: enable
 * Language and frameworks > Javascript > Stylesheets > stylelint: enable
 * Language and frameworks > Node > interpreter: choose
 * Language and frameworks > Node: enable coding assistance
-### <a name="node"></a> Node.js ir npm
+### 2<a name="node"></a> Node.js ir npm
 Instaliuojame `nvm` (node version manager)
 * Linux/macOS - https://github.com/creationix/nvm#install-script
 * Windows - https://github.com/coreybutler/nvm-windows
@@ -36,18 +37,18 @@ nvm use --lts
 nvm alias default --lts
 ```
 
-### <a name="lock"></a>`package.json` ir `package-lock.json`
+### 3<a name="lock"></a>`package.json` ir `package-lock.json`
 Du failai, kurie nusako depenedencių versijas yra `package.json` ir `package-lock.json`. `package.json` yra human-readable formatas, kuriame yra nusakoma, kokių paketų versijų pageidaujame. `package-lock.json` yra machine-readable formatas, kuris nusako, kokios tikslios versijos yra suinstaliuotos.
-#### Inicijuojame projektą
+#### 3.1 Inicijuojame projektą
 Sukuriame tuščią package.json failo paruoštuką, kurį vėliau užpildysime savo paketų reikalavimais. Jis susideda iš kelių privalomų laukų kurious numatytomis reikšmėmis mums patogiai užpildys ši komanda
 ```sh
 npm init -y
 ```
 Package.json faile esančiame `scripts` lauke galime įrašyti shell komandas kurias vėliau galėsime patogiai paleisti naudodami nurodytą trumpinį, pvz: `npm run develop`. Šie komandų trumpiniai dažniausiai naudojami aplikacijai paleisti ar sukompiliuoti.
 > P.S. Atkreipkime dėmesį, kad kai kurios shell komandos gali skirtis prikalusomai nuo operacinės sistemos.
-### <a name="deps"></a> Dependency tipai
+### 4 <a name="deps"></a> Dependency tipai
 Vieni svarbiausių laukų package.json faile yra dependencies. Jų yra net trys rūšys: `dependencies`, `devDependencies` ir `peerDepenencies`. Į `dependencies` lauką įrašome projektui paleisti (galutinei versijai) reikalingus paketus. Į `devDependencies` rašome paketus kurie reikalingi aplikacijai sukompiliuoti arba įrankiai naudojami development’o metu. Į `peerDependencies` rašome paketus kurie “tikimės” kad bus instaliuoti pačio developer’io tačiau jų automatiškai neistaliuojame (pvz typescript).
-#### Įrankiai ir bibliotekos
+#### 4.1 Įrankiai ir bibliotekos
 **es-lint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
 ```sh
 npm install es-lint --save-dev
@@ -82,14 +83,15 @@ npm install react-dom
 npm install parcel
 ```
 
-#### Įrankių konfigūracija
+### 4.2 Įrankių konfigūracija
 Kai kurių katalogų repozitorijoje nelaikysime. Sukurkime `.gitignore` failą
 ```
 /node_modules
 /dist
+/.cache
 ```
 
-Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `.prettierrc``
+Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `.prettierrc`
 ```json
 {
   "printWidth": 120,
@@ -98,7 +100,7 @@ Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `
 }
 ```
 
-## Test drive
+## 5 <a name="test"></a> Test drive
 Paleiskime pirmą hello world aplikaciją keliais paprastas žingsniais. Sukuriame katalogą `src` ir jame du failus `index.html` ir `index.js`.
 ```js
 // index.js
@@ -116,9 +118,8 @@ Paleidžiame parcel
 ./node_modules/.bin/parcel src/index.html
 ```
 Adresu `http://localhost:1234` turėtų būti pasiekiama jūsų programa.
-## <a name="es6"></a> ES6 įvadas ir pagrindai
-### Baziniai pagrindai
-#### `let` ir `const`
+## 6 <a name="es6"></a> ES6 įvadas ir pagrindai
+#### 6.1 `let` ir `const`
 Pradedant ES6 javascript versija kintamųjų deklaravimui nebenaudojame raktažodžio `var`. Jį keičia du nauji - `let` ir `const`.
 
 Vienas svarbiausių skirtumų tarp senojo `var` ir naujųjų `const` bei `let` tai deklaracijos apibrėžtis (scope). Kaip žinia kintamieji deklaruojami naudojant `var` įgauną funkcijos lygio apibrėžtį, kitaip tariant toks kintamasis bus pasiekiamas visoje funkcijoje kurioje jis buvo deklaruotas (įskaitant visas vidines funkcijas). Tuo tarpu `let` bei `const` įgauna bloko lygio apibrėžtį, arba bus pasiekiami tik tame bloke kuriame buvo deklaruoti (įskaitant visus vidinius blokus).
@@ -133,7 +134,7 @@ for (let i = 0; i < MAX_DURATION; i++) {
     console.log(i);
 }
 ```
-#### `import`/`export`
+#### 6.2 `import`/`export`
 ES6 įvėdė naują sistemą moduliams importuoti bei eksportuoti aplikacijoje. Seniau naudojome iš node.js kilusią `require` funkciją kurią ES6 pakeitė naujais raktažodžiais `import` ir `export`.
 
 `import` sintaksė
@@ -147,7 +148,7 @@ import classnames from 'classnames';
 export render;
 export default classnames;
 ```
-#### destructors
+#### 6.3 destructors
 Destruktoriai naudojami objektų “išskleidimui” į kintamuosius.
 ```js
 const coordinates = {
@@ -158,7 +159,7 @@ const coordinates = {
 const { lat, lon } = coordinates;
 console.log(lat, lon);
 ```
-#### arrow functions
+#### 6.4 arrow functions
 Tai trumpesnis funkcijos aprašymo būdas, t.y. `function () {}` keičiam į `() => {}`.
 Taip pat svarbus skirtumas yra, kad arrow funkcija išsaugo išorinį reference į raktažodį `this`.
 ```js
@@ -173,7 +174,7 @@ const getGreeting = () => {
 }
 const getGreeting = () => 'Hello world';
 ```
-#### class klasės
+#### 6.5 class klasės
 Seniau norėdami sukurti javascript klasę turėdavome rašyti nemažai kodo, t.y. save kviečiančią funkciją kuri viduje deklaruoja konstruktorių… ES6 mums tai palengvino todėl dabar klasės aprašomos taip pat kaip ir daugumoje OOP programavimo kalbų.
 ```js
 class Button extends React.Component {
@@ -182,7 +183,7 @@ class Button extends React.Component {
     }
 }
 ```
-#### simplified object notations
+#### 6.6 simplified object notations
 Objekto parametrus kurių pavadinimai yra tokie pat kaip reikšmei priskiriamas kintamojo pavadinimas galime aprašyti trumpiau.
 ```js
 const test = 1;
@@ -190,10 +191,10 @@ const test = 1;
 const foo = { test };
 const foo = { test: test };
 ```
-#### Array as reference type
+#### 6.7 Array as reference type
 Javascript egzistuoja tik primityvai ir objektai. Primityvai yra `string`, `number`, `boolean`, `undefined`, `null`. Visa kita yra objektai. Masyvai taip pat yra objektai
-## <a name="react"></a> React sąvokos
-### JSX
+## 7 <a name="react"></a> React sąvokos
+### 7.1 JSX
 JSX == HTML (**išskyrus** className, prop bindings, additional syntax, inline js in html, conditions, custom elements (components), style definitions, event handlers, xhtml style empty elements, single parent element per block and more).
 ```js
 const name = 'John Doe';
@@ -223,7 +224,7 @@ Tai primena browseriuose esančią DOM sintaksę
 document.createElement('div', { id: 'main' });
 ```
 Patogumui naudosime tik JSX sitaksę.
-### Komponentai
+### 7.2 Komponentai
 React komponentus naudojame taip pat, kaip ir paprastus react elementus `div`, `span` ar kitus HTML esančius atitikmenis.
 ```js
 import Separator from 'components/Separator';
