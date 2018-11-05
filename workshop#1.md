@@ -104,7 +104,8 @@ Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `
 {
   "printWidth": 120,
   "trailingComma": "all",
-  "singleQuote": true
+  "singleQuote": true,
+  "tabWidth": 4
 }
 ```
 Taip pat `.stylelintrc`
