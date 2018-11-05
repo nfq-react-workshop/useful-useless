@@ -62,6 +62,7 @@ npm install prettier --save-dev
 **css-lint** Įrankis kuris padės išvengti klaidų stiliuose. Kartu veikia ir kaip kodo formatavimo hinteris
 ```sh
 npm install csslint --save-dev
+npm install stylelint --save-dev
 npm install stylelint-config-recommended --save-dev
 ```
 
