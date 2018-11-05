@@ -51,7 +51,7 @@ Vieni svarbiausių laukų package.json faile yra dependencies. Jų yra net trys 
 #### 4.1 Įrankiai ir bibliotekos
 **es-lint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
 ```sh
-npm install es-lint --save-dev
+npm install eslint --save-dev
 ```
 
 **prettier** Nesirūpinkite kodo stiliumi tuo pasirūpins prettier (kodo formatavimas)
@@ -61,7 +61,8 @@ npm install prettier --save-dev
 
 **css-lint** Įrankis kuris padės išvengti klaidų stiliuose. Kartu veikia ir kaip kodo formatavimo hinteris
 ```sh
-npm install css-lint --save-dev
+npm install csslint --save-dev
+npm install stylelint-config-recommended --save-dev
 ```
 
 **git-hooks** komandos paleidžiamos prieš arba po git komandų. Dažniausiai naudojamos įvairiems tikrinimo/formatavimo įrankiams inicijuoti prieš keliant kodą į repozitoriją.
