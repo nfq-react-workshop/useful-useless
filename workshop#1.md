@@ -100,6 +100,19 @@ Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `
   "singleQuote": true
 }
 ```
+Taip pat `.stylelintrc`
+```json
+{
+  "extends": [
+    "stylelint-config-recommended"
+  ],
+  "rules": {
+    "selector-list-comma-newline-after": "always",
+    "selector-pseudo-element-colon-notation": "double",
+    "no-duplicate-selectors": null
+  }
+}
+```
 
 ## 5 <a name="test"></a> Test drive
 Paleiskime pirmą hello world aplikaciją keliais paprastas žingsniais. Sukuriame katalogą `src` ir jame du failus `index.html` ir `index.js`.
