@@ -50,9 +50,14 @@ Package.json faile esančiame `scripts` lauke galime įrašyti shell komandas ku
 ### 4 <a name="deps"></a> Dependency tipai
 Vieni svarbiausių laukų package.json faile yra dependencies. Jų yra net trys rūšys: `dependencies`, `devDependencies` ir `peerDepenencies`. Į `dependencies` lauką įrašome projektui paleisti (galutinei versijai) reikalingus paketus. Į `devDependencies` rašome paketus kurie reikalingi aplikacijai sukompiliuoti arba įrankiai naudojami development’o metu. Į `peerDependencies` rašome paketus kurie “tikimės” kad bus instaliuoti pačio developer’io tačiau jų automatiškai neistaliuojame (pvz typescript).
 #### 4.1 Įrankiai ir bibliotekos
-**es-lint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
+**eslint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
 ```sh
 npm install eslint --save-dev
+npm install babel-eslint --save-dev
+npm install eslint-config-prettier --save-dev
+npm install eslint-plugin-prettier --save-dev
+npm install eslint-plugin-react --save-dev
+npm install prettier-eslint --save-dev
 ```
 
 **prettier** Nesirūpinkite kodo stiliumi tuo pasirūpins prettier (kodo formatavimas)
@@ -112,6 +117,42 @@ Taip pat `.stylelintrc`
     "selector-list-comma-newline-after": "always",
     "selector-pseudo-element-colon-notation": "double",
     "no-duplicate-selectors": null
+  }
+}
+```
+Ir `.eslintrc.json`
+```json
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "^16.4.1"
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/display-name": [ 0 ]
   }
 }
 ```
