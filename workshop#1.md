@@ -23,6 +23,7 @@ ext install dzannotti.vscode-babel-coloring
 <kbd>⌘</kbd> + <kbd>,</kbd> (<kbd>Ctrl</kbd> + <kbd>,</kbd>)
 * Language and frameworks > javascript version: React/JSX
 * Language and frameworks > Javascript > Code quality tools > eslint: enable
+  * path `{project dir}/node_modules/stylelint`
 * Language and frameworks > Javascript > Stylesheets > stylelint: enable
 * Language and frameworks > Node > interpreter: choose
 * Language and frameworks > Node: enable coding assistance
