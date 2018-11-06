@@ -10,16 +10,26 @@ Susipažinsime su naudojamomis technologijomis ir įrankiais, kuriuos naudosime 
 5. [Test drive](#test)
 6. [ES6 įvadas ir pagrindai](#es6)
 7. [React sąvokos](#react)
-### 1<a name="ide"></a> IDE paruošimas
+### 1. <a name="node"></a> Node.js ir npm
+Instaliuojame `nvm` (node version manager)
+* Linux/macOS - https://github.com/creationix/nvm#install-script
+* Windows - https://github.com/coreybutler/nvm-windows
+
+Instaliuojame `node` su `nvm`
+```sh
+nvm install --lts
+nvm use --lts
+```
+### 2. <a name="ide"></a> IDE paruošimas
 Neturintiems nei phpStorm, nei webStorm, nei VS Code rekomenduojame įsidiegti VS Code.
-#### 1.1 VS Code paruošimas
+#### 2.1 VS Code paruošimas
 <kbd>⌘</kbd> + <kbd>P</kbd> (<kbd>Ctrl</kbd> + <kbd>P</kbd>)
 ```
 ext install dbaeumer.vscode-eslint
 ext install esbenp.prettier-vscode
 ext install dzannotti.vscode-babel-coloring
 ```
-#### 1.2 phpStorm paruošimas
+#### 2.2 phpStorm paruošimas
 <kbd>⌘</kbd> + <kbd>,</kbd> (<kbd>Ctrl</kbd> + <kbd>,</kbd>)
 * Language and frameworks > javascript version: React/JSX
 * Language and frameworks > Javascript > Code quality tools > eslint: enable
@@ -27,18 +37,7 @@ ext install dzannotti.vscode-babel-coloring
   * path `{project dir}/node_modules/stylelint`
 * Language and frameworks > Node > interpreter: choose
 * Language and frameworks > Node: enable coding assistance
-### 2<a name="node"></a> Node.js ir npm
-Instaliuojame `nvm` (node version manager)
-* Linux/macOS - https://github.com/creationix/nvm#install-script
-* Windows - https://github.com/coreybutler/nvm-windows
-Instaliuojame `node` su `nvm`
-```sh
-nvm install --lts
-nvm use --lts
-nvm alias default --lts
-```
-
-### 3<a name="lock"></a>`package.json` ir `package-lock.json`
+### 3. <a name="lock"></a>`package.json` ir `package-lock.json`
 Du failai, kurie nusako depenedencių versijas yra `package.json` ir `package-lock.json`. `package.json` yra human-readable formatas, kuriame yra nusakoma, kokių paketų versijų pageidaujame. `package-lock.json` yra machine-readable formatas, kuris nusako, kokios tikslios versijos yra suinstaliuotos.
 #### 3.1 Inicijuojame projektą
 Sukuriame tuščią package.json failo paruoštuką, kurį vėliau užpildysime savo paketų reikalavimais. Jis susideda iš kelių privalomų laukų kurious numatytomis reikšmėmis mums patogiai užpildys ši komanda
@@ -47,7 +46,7 @@ npm init -y
 ```
 Package.json faile esančiame `scripts` lauke galime įrašyti shell komandas kurias vėliau galėsime patogiai paleisti naudodami nurodytą trumpinį, pvz: `npm run develop`. Šie komandų trumpiniai dažniausiai naudojami aplikacijai paleisti ar sukompiliuoti.
 > P.S. Atkreipkime dėmesį, kad kai kurios shell komandos gali skirtis prikalusomai nuo operacinės sistemos.
-### 4 <a name="deps"></a> Dependency tipai
+### 4. <a name="deps"></a> Dependency tipai
 Vieni svarbiausių laukų package.json faile yra dependencies. Jų yra net trys rūšys: `dependencies`, `devDependencies` ir `peerDepenencies`. Į `dependencies` lauką įrašome projektui paleisti (galutinei versijai) reikalingus paketus. Į `devDependencies` rašome paketus kurie reikalingi aplikacijai sukompiliuoti arba įrankiai naudojami development’o metu. Į `peerDependencies` rašome paketus kurie “tikimės” kad bus instaliuoti pačio developer’io tačiau jų automatiškai neistaliuojame (pvz typescript).
 #### 4.1 Įrankiai ir bibliotekos
 **eslint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
@@ -74,7 +73,27 @@ npm install stylelint-config-recommended --save-dev
 
 **git-hooks** komandos paleidžiamos prieš arba po git komandų. Dažniausiai naudojamos įvairiems tikrinimo/formatavimo įrankiams inicijuoti prieš keliant kodą į repozitoriją.
 
-**React browser plugin** Naršyklės dev-tools plėtinys padedantis matyti ir debug’inti vidinę React’o komponentų struktūrą bei jų props’ų reikšmes. https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
+Į `package.json` įdedame:
+```json
+"lint-staged": {
+  "src/**/*.jsx": [
+    "prettier --write",
+    "git add"
+  ],
+  "src/**/*.scss": [
+    "stylelint --syntax scss",
+    "git add"
+  ]
+}
+```
+Taip pat po `scripts` pridedame:
+```json
+"precommit": "lint-staged"
+```
+
+
+**React browser plugin** Naršyklės dev-tools plėtinys padedantis matyti ir debug’inti vidinę React’o komponentų struktūrą bei jų props’ų reikšmes.
+https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
 
 **react** biblioteka, leidžianti kurti komponentus
 ```sh
@@ -89,6 +108,10 @@ npm install react-dom
 **parcel** rašysime modernų javascript, kurio sąvybių nepalaiko naršyklės, todėl kodą reiks transpiliuoti ir subundlinti į vieną failą
 ```
 npm install parcel
+```
+Taip pat prisidedame `script` į package.json
+```json
+"start": "parcel src/index.html --open",
 ```
 
 ### 4.2 Įrankių konfigūracija
@@ -121,7 +144,7 @@ Taip pat `.stylelintrc`
   }
 }
 ```
-Ir `.eslintrc.json`
+Ir `.eslintrc`
 ```json
 {
   "parser": "babel-eslint",
@@ -164,16 +187,16 @@ Paleiskime pirmą hello world aplikaciją keliais paprastas žingsniais. Sukuria
 // index.js
 console.log('Hello world');
 ```
-`index.html` faile rašome `html:5` ir spaudžiame <kbd>tab</kbd>. Gausime html template, kurio body telieka sudėti tokį turinį.
+`index.html` faile rašome `html:5` arba tiesiog `!` ir spaudžiame <kbd>tab</kbd>. Gausime html template, kurio body telieka sudėti tokį turinį.
 ```html
 <body>
     Hello world
     <script src="index.js"></script>
 </body>
 ```
-Paleidžiame parcel
+Kadangi jau įsidėjome `start` į package.json `scripts` paleidžiame parcel viena trumpa komanda:
 ```sh
-./node_modules/.bin/parcel src/index.html
+npm start
 ```
 Adresu `http://localhost:1234` turėtų būti pasiekiama jūsų programa.
 ## 6 <a name="es6"></a> ES6 įvadas ir pagrindai
@@ -249,7 +272,14 @@ const test = 1;
 const foo = { test };
 const foo = { test: test };
 ```
-#### 6.7 Array as reference type
+#### 6.7 Template literals
+Tai sintaksė kuri leidžia į string'us įterpti kintamuosius:
+```js
+const name = 'John’;
+const greeting = `hello, ${name}!`;
+console.log(greeting); // Hello, John!
+```
+#### 6.8 Array as reference type
 Javascript egzistuoja tik primityvai ir objektai. Primityvai yra `string`, `number`, `boolean`, `undefined`, `null`. Visa kita yra objektai. Masyvai taip pat yra objektai
 ## 7 <a name="react"></a> React sąvokos
 ### 7.1 JSX
