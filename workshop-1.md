@@ -3,8 +3,8 @@
 Susipažinsime su naudojamomis technologijomis ir įrankiais, kuriuos naudosime viso kurso metu. Pasiruošime darbinę aplinką ir sukursime pirmą React komponentą.
 
 ### Agenda
-1. [IDE paruošimas](#ide)
-2. [Node.js ir npm](#node)
+1. [Node.js ir npm](#node)
+2. [IDE paruošimas](#ide)
 3. [package.json ir package-lock.json](#lock)
 4. [Dependency tipai](#deps)
 5. [Test drive](#test)
