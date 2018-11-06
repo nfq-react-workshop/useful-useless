@@ -1,0 +1,33 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "react",
+    "prettier"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "^16.4.1"
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "react/display-name": [ 0 ]
+  }
+}
