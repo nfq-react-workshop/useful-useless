@@ -275,7 +275,7 @@ const foo = { test: test };
 #### 6.7 Template literals
 Tai sintaksė kuri leidžia į string'us įterpti kintamuosius:
 ```js
-const name = 'John’;
+const name = 'John';
 const greeting = `hello, ${name}!`;
 console.log(greeting); // Hello, John!
 ```
