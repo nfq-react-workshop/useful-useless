@@ -28,6 +28,7 @@ Neturintiems nei phpStorm, nei webStorm, nei VS Code rekomenduojame įsidiegti V
 ext install dbaeumer.vscode-eslint
 ext install esbenp.prettier-vscode
 ext install dzannotti.vscode-babel-coloring
+ext install shinnn.stylelint
 ```
 #### 2.2 phpStorm paruošimas
 <kbd>⌘</kbd> + <kbd>,</kbd> (<kbd>Ctrl</kbd> + <kbd>,</kbd>)

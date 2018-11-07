@@ -13,6 +13,7 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | 
 ext install dbaeumer.vscode-eslint
 ext install esbenp.prettier-vscode
 ext install dzannotti.vscode-babel-coloring
+ext install shinnn.stylelint
 ```
 # 3. Instaliuojame įrankius
 ## 3.1 eslint
