@@ -1,33 +1,22 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "immutable", "import", "prettier"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true,
     "jest": true
   },
-  "settings": {
-    "react": {
-      "version": "^16.4.1"
-    }
-  },
   "rules": {
     "prettier/prettier": "error",
-    "react/display-name": [ 0 ]
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ]
   }
 }
