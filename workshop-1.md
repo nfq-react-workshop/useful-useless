@@ -51,12 +51,15 @@ Vieni svarbiausių laukų package.json faile yra dependencies. Jų yra net trys 
 #### 4.1 Įrankiai ir bibliotekos
 **eslint** įrankis skirtas kodo formatavimo ir sintaksės klaidų tikrinimui
 ```sh
+npm install acorn --save-dev
 npm install eslint --save-dev
-npm install babel-eslint --save-dev
+npm install eslint-config-airbnb --save-dev
 npm install eslint-config-prettier --save-dev
+npm install eslint-plugin-immutable --save-dev
+npm install eslint-plugin-import --save-dev
+npm install eslint-plugin-jsx-a11y --save-dev
 npm install eslint-plugin-prettier --save-dev
 npm install eslint-plugin-react --save-dev
-npm install prettier-eslint --save-dev
 ```
 
 **prettier** Nesirūpinkite kodo stiliumi tuo pasirūpins prettier (kodo formatavimas)
@@ -73,24 +76,32 @@ npm install stylelint-config-recommended --save-dev
 
 **git-hooks** komandos paleidžiamos prieš arba po git komandų. Dažniausiai naudojamos įvairiems tikrinimo/formatavimo įrankiams inicijuoti prieš keliant kodą į repozitoriją.
 
-Į `package.json` įdedame:
+Instaliuojame git-hooks įrankius: 
+```sh
+npm install husky --save-dev
+npm install lint-staged --save-dev
+```
+Į `package.json` įdedame `husky` konfiguraciją:
+```json
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+Taip pat `lint-staged` konfiguraciją:
 ```json
 "lint-staged": {
   "src/**/*.jsx": [
-    "prettier --write",
+    "eslint --fix",
     "git add"
   ],
   "src/**/*.scss": [
     "stylelint --syntax scss",
     "git add"
   ]
-}
+},
 ```
-Taip pat po `scripts` pridedame:
-```json
-"precommit": "lint-staged"
-```
-
 
 **React browser plugin** Naršyklės dev-tools plėtinys padedantis matyti ir debug’inti vidinę React’o komponentų struktūrą bei jų props’ų reikšmes.
 https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
@@ -117,6 +128,8 @@ Taip pat prisidedame `script` į package.json
 ### 4.2 Įrankių konfigūracija
 Kai kurių katalogų repozitorijoje nelaikysime. Sukurkime `.gitignore` failą
 ```
+.idea
+.vscode
 /node_modules
 /dist
 /.cache
@@ -125,10 +138,10 @@ Kai kurių katalogų repozitorijoje nelaikysime. Sukurkime `.gitignore` failą
 Vienodam kodo stiliui išlaikyti sukonfigūruokime `prettier` sukurdami failą `.prettierrc`
 ```json
 {
-  "printWidth": 120,
-  "trailingComma": "all",
   "singleQuote": true,
-  "tabWidth": 4
+  "tabWidth": 2,
+  "printWidth": 100,
+  "trailingComma": "all"
 }
 ```
 Taip pat `.stylelintrc`
@@ -148,35 +161,24 @@ Ir `.eslintrc`
 ```json
 {
   "parser": "babel-eslint",
-  "extends": [
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "immutable", "import", "prettier"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true,
     "jest": true
   },
-  "settings": {
-    "react": {
-      "version": "^16.4.1"
-    }
-  },
   "rules": {
     "prettier/prettier": "error",
-    "react/display-name": [ 0 ]
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ]
   }
 }
 ```

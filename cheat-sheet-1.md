@@ -17,12 +17,15 @@ ext install dzannotti.vscode-babel-coloring
 # 3. Instaliuojame įrankius
 ## 3.1 eslint
 ```sh
+npm install acorn --save-dev
 npm install eslint --save-dev
-npm install babel-eslint --save-dev
+npm install eslint-config-airbnb --save-dev
 npm install eslint-config-prettier --save-dev
+npm install eslint-plugin-immutable --save-dev
+npm install eslint-plugin-import --save-dev
+npm install eslint-plugin-jsx-a11y --save-dev
 npm install eslint-plugin-prettier --save-dev
 npm install eslint-plugin-react --save-dev
-npm install prettier-eslint --save-dev
 ```
 ## 3.2 prettier
 ```sh
@@ -35,22 +38,31 @@ npm install stylelint --save-dev
 npm install stylelint-config-recommended --save-dev
 ```
 ## 3.4 git-hooks
-Į `package.json` įdedame:
+Instaliuojame git-hooks įrankius: 
+```sh
+npm install husky --save-dev
+npm install lint-staged --save-dev
+```
+Į `package.json` įdedame `husky` konfiguraciją:
+```json
+"husky": {
+  "hooks": {
+    "pre-commit": "lint-staged"
+  }
+}
+```
+Taip pat `lint-staged` konfiguraciją:
 ```json
 "lint-staged": {
   "src/**/*.jsx": [
-    "prettier --write",
+    "eslint --fix",
     "git add"
   ],
   "src/**/*.scss": [
     "stylelint --syntax scss",
     "git add"
   ]
-}
-```
-Taip pat po `scripts` pridedame:
-```json
-"precommit": "lint-staged"
+},
 ```
 ## 3.5 React browser plugin
 https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
@@ -62,10 +74,10 @@ Prisidedame `script` į package.json
 ## 3.7 `.prettierrc`
 ```json
 {
-  "printWidth": 120,
-  "trailingComma": "all",
   "singleQuote": true,
-  "tabWidth": 4
+  "tabWidth": 2,
+  "printWidth": 100,
+  "trailingComma": "all"
 }
 ```
 ## 3.8 `.stylelintrc`
@@ -85,35 +97,24 @@ Prisidedame `script` į package.json
 ```json
 {
   "parser": "babel-eslint",
-  "extends": [
-    "plugin:react/recommended",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "react",
-    "prettier"
-  ],
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["react", "immutable", "import", "prettier"],
   "env": {
     "browser": true,
     "es6": true,
     "node": true,
     "jest": true
   },
-  "settings": {
-    "react": {
-      "version": "^16.4.1"
-    }
-  },
   "rules": {
     "prettier/prettier": "error",
-    "react/display-name": [ 0 ]
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ]
   }
 }
 ```
