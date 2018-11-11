@@ -70,7 +70,7 @@ Taip pat `lint-staged` konfiguraciją:
 ### 3.5 React browser plugin
 https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
 ### 3.6 Parcel
-Prisidedame `script` į package.json
+Prisidedame `scripts` į package.json
 ```json
 "start": "parcel src/index.html --open",
 ```
