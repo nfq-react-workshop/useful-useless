@@ -239,7 +239,12 @@ export default class App extends React.Component {
 npm install sass
 npm install postcss-modules
 ```
-
+Sukuriame `.postcssrc` failą
+```json
+{
+  "modules": true
+}
+```
 # 3.2 CSS Modules
 Naudojame CSS klases javascript'e
 ```js
