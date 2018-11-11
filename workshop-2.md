@@ -71,6 +71,39 @@ const Button = (props) => (
 </Button>
 ```
 
+#### 1.2 Callbacks
+Norint gauti duomenis iš komponento vidaus į išorę naudosime `callback`. Tai yra paprasta funkcija perduodama per `props`.
+```jsx
+// Button.jsx
+const attributes = {
+    type: 'button'
+}
+class Button extends React.Component {
+    constructor(props) {
+        super(props);
+        props.onConstruct(attributes);
+    }
+    render() {
+        <button type={attributes.type}
+    }
+};
+```
+```jsx
+// Form.tsx
+function haveData(data) {
+    console.log(data); // { type: 'button' }
+}
+
+class Form extends React.Component {
+    render() {
+        <form>
+            <legend>The Form</legend>
+            <Button onConstruct={haveData} />
+        </form>
+    }
+}
+```
+
 ### 2. <a name="layout"></a> App layout
 
 ### 3. <a name="styling"></a> Styling
