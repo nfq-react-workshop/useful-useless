@@ -173,4 +173,44 @@ Paverskime tokį kodą `jsx` layout.
     </footer>
 </React.fragment>
 ```
+Toliau šį layout turėtume suskaidyti į nedidelius komponentus. Komponentų dydis turi būti toks, kad tenkintų *Single Responsibility* principą ir turėtų *interface* kuris neatskleistų implementacijos detalių. Semantinis sąrašas galėtų atrodyti taip:
+* menu
+    * logo
+    * navigacija
+        * list
+            * link
+* turinys
+    * list
+        * card
+            * content
+            * footer
+* footer
+    * list
+        * link
+
+Failų struktūra galėtų būti tokia
+```
+src/
+    components/
+        Menu.jsx
+        Nav.jsx
+        NavLinks.jsx
+        NavLink.jsx
+        Cards.jsx
+        Card.jsx
+        CardContent.jsx
+        CardFooter.jsx
+        Footer.jsx
+        FooterLinks.jsx
+```
+Example layout
+```jsx
+const Layout = () => (
+    <React.fragment>
+        <Nav />
+        <Cards />
+        <Footer />
+    </React.fragment>
+);
+```
 ### 3. <a name="styling"></a> Styling
