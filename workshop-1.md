@@ -125,7 +125,7 @@ npm install react-dom
 
 **parcel** rašysime modernų javascript, kurio sąvybių nepalaiko naršyklės, todėl kodą reiks transpiliuoti ir subundlinti į vieną failą
 ```
-npm install parcel
+npm install parcel --save-dev
 ```
 Taip pat prisidedame `script` į package.json
 ```json
