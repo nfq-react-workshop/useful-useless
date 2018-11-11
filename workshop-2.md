@@ -213,4 +213,49 @@ const Layout = () => (
     </React.fragment>
 );
 ```
+#### 2.1 Duomenų perdavimas
+Šiame etape turime komponentus, kuriuose visa informacija yra statiška. Tačiau pagal prigimtį mūsų programoje nemažai informacijos yra dinamiška. Kol kas turime
+* **item** - `Card` komponento subjektas
+* **page** - `NavLink` komponento subjektas
+
+Galime pamėginti nusakyti jų struktūrą ir išvardinti juos dinamiškai. `JSX` sintaksė renderina tai, ką gražina išraiška tarp `{}`, todėl norint spausdinti masyvą React komponentų naudojame [Array.map](https://devdocs.io/javascript/global_objects/array/map). Kiekvienas masyvo narys bus mappinamas į komponetą.
+```js
+// src/components/Cards.jsx
+const items = [
+    {
+        title: 'Making rain simulation as real as possible',
+        comments_count: 14,
+        url: 'http://rainbowhunt.me/?plays',
+        user: 'sazers'
+    },
+    {
+        title: 'Show HN: Google Earth for live radios',
+        comments_count: 1,
+        url: 'http://radio.garden',
+        user: 'jaoued'
+    }
+];
+
+const Cards = () => (
+    <main>
+        {items.map((item) => (
+            <Card item={item} />
+        ))}
+    </main>
+)
+```
+Analogiškai galėtume pasielgti su menu linkais.
+```js
+const pages = [
+    {
+        title: 'new',
+        link: '#new'
+    },
+    {
+        title: 'comments',
+        link: '#comments'
+    }
+    ...
+];
+```
 ### 3. <a name="styling"></a> Styling
