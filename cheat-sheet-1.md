@@ -1,13 +1,15 @@
-# 1 Node.js ir npm
-## 1.1 Instaliuojame `nvm` (node version manager)
+# Cheat-sheet for Workshop 1
+
+## 1 Node.js ir npm
+### 1.1 Instaliuojame `nvm` (node version manager)
 * Linux/macOS - https://github.com/creationix/nvm#install-script
 ```sh
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 ```
 * Windows - https://github.com/coreybutler/nvm-windows
 
-# 2. IDE paruošimas
-## 2.1 VS Code paruošimas
+## 2. IDE paruošimas
+### 2.1 VS Code paruošimas
 <kbd>⌘</kbd> + <kbd>P</kbd> (<kbd>Ctrl</kbd> + <kbd>P</kbd>)
 ```
 ext install dbaeumer.vscode-eslint
@@ -15,8 +17,8 @@ ext install esbenp.prettier-vscode
 ext install dzannotti.vscode-babel-coloring
 ext install shinnn.stylelint
 ```
-# 3. Instaliuojame įrankius
-## 3.1 eslint
+## 3. Instaliuojame įrankius
+### 3.1 eslint
 ```sh
 npm install acorn --save-dev
 npm install eslint --save-dev
@@ -28,17 +30,17 @@ npm install eslint-plugin-jsx-a11y --save-dev
 npm install eslint-plugin-prettier --save-dev
 npm install eslint-plugin-react --save-dev
 ```
-## 3.2 prettier
+### 3.2 prettier
 ```sh
 npm install prettier --save-dev
 ```
-## 3.3 css-lint
+### 3.3 css-lint
 ```sh
 npm install csslint --save-dev
 npm install stylelint --save-dev
 npm install stylelint-config-recommended --save-dev
 ```
-## 3.4 git-hooks
+### 3.4 git-hooks
 Instaliuojame git-hooks įrankius: 
 ```sh
 npm install husky --save-dev
@@ -65,14 +67,14 @@ Taip pat `lint-staged` konfiguraciją:
   ]
 },
 ```
-## 3.5 React browser plugin
+### 3.5 React browser plugin
 https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi
-## 3.6 Parcel
+### 3.6 Parcel
 Prisidedame `script` į package.json
 ```json
 "start": "parcel src/index.html --open",
 ```
-## 3.7 `.prettierrc`
+### 3.7 `.prettierrc`
 ```json
 {
   "singleQuote": true,
@@ -81,7 +83,7 @@ Prisidedame `script` į package.json
   "trailingComma": "all"
 }
 ```
-## 3.8 `.stylelintrc`
+### 3.8 `.stylelintrc`
 ```json
 {
   "extends": [
@@ -94,7 +96,7 @@ Prisidedame `script` į package.json
   }
 }
 ```
-## 3.9 `.eslintrc`
+### 3.9 `.eslintrc`
 ```json
 {
   "parser": "babel-eslint",
