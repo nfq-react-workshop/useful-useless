@@ -17,6 +17,11 @@
         "optionalDependencies": false,
         "peerDependencies": false
       }
-    ]
+    ],
+    "import/prefer-default-export": ["off"],
+    "react/prefer-stateless-function": ["off"],
+    "react/prop-types": ["off"],
+    "react/no-array-index-key": ["off"],
+    "react/destructuring-assignment": ["off"]
   }
 }

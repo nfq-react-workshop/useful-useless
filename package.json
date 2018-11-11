@@ -33,6 +33,8 @@
   },
   "homepage": "https://github.com/nfq-react-workshop/useful-useless#readme",
   "dependencies": {
+    "bulma": "^0.7.2",
+    "font-awesome": "^4.7.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   },
@@ -51,8 +53,10 @@
     "husky": "^1.1.3",
     "lint-staged": "^8.0.4",
     "parcel-bundler": "^1.10.3",
+    "postcss-modules": "^1.4.1",
     "prettier": "^1.14.3",
     "rimraf": "^2.6.2",
+    "sass": "^1.14.3",
     "stylelint": "^9.7.1",
     "stylelint-config-recommended": "^2.1.0"
   },
