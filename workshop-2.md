@@ -105,5 +105,72 @@ class Form extends React.Component {
 ```
 
 ### 2. <a name="layout"></a> App layout
-
+Kursime app su gana įprastu layout. Layout bus ruošiamas mobile-first. Viršuje turėsime meniu, logotipą. Žemiau išvardinsime vienokio ar kitokio tipo subjektus, kurie turės nuorodas ir informaciją.
+Apačioje turėsim footer su statinio teksto nuorodom.
+```
++---------------------------------+
+|LOGO  |new|comments|show|ask|jobs|
++---------------------------------+
+|                                 |
+| 1. Making rain simulation as    |
+|    real as possible             |
+|                                 |
+|    by sazers | 14 comments      |
+|                                 |
+| +-----------------------------+ |
+|                                 |
+| 2. Show HN: Google Earth for    |
+|    live radios                  |
+|                                 |
+|    by jaoed | 1 comment         |
+|                                 |
+| +-----------------------------+ |
+|                                 |
+| prev | 1 | 2 | 3 | 4 | 5 | next |
+|                                 |
+|                                 |
+| FAQ                             |
+| Support                         |
+| Careers                         |
+|                                 |
++---------------------------------+
+```
+Paverskime tokį kodą `jsx` layout.
+```jsx
+<React.fragment>
+    <nav>
+        <div>logo</div>
+        <div>
+            <a href="#new">new</a>
+            <a href="#comments">comments</a>
+            <a href="#show">show</a>
+            <a href="#ask">ask</a>
+            <a href="#jobs">jobs</a>
+        </div>
+    </nav>
+    <main>
+        <div>
+            <span>1.</span>
+            <div>Making rain simulation as real as possible</div>
+            <div>
+                <a href="#sazers">by sazers</a>
+                <a href="#comments">14 comments</a>
+            </div>
+        </div>
+        <div>
+            <span>1.</span>
+            <div>Show HN: Google Earth for live radios</div>
+            <div>
+                <a href="#jaoed">by jaoed</a>
+                <a href="#comments">1 comment</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <a href="#FAQ">FAQ</a>
+        <a href="#Support">Support</a>
+        <a href="#Carrers">Carrers</a>
+    </footer>
+</React.fragment>
+```
 ### 3. <a name="styling"></a> Styling
