@@ -1,7 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-const NavLink = props => <a href={props.url}>{props.children}</a>;
+const NavLink = props => (
+    <a className="navbar-item" href={props.url}>
+        {props.children}
+    </a>
+);
 
 NavLink.propTypes = {
     url: PropTypes.string,

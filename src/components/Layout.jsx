@@ -5,7 +5,7 @@ import Footer from './Footer';
 import Pager from './Pager';
 
 const Layout = () => (
-    <div>
+    <div className="container">
         <Menu />
         <hr />
         <main>

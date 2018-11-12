@@ -32,13 +32,10 @@ const items = menuItems.map(function(item) {
     );
 });
 
-const Nav = () => <div>{items}</div>;
-
-/**        <NavLink url="#new">new</NavLink>
-        <NavLink url="#comments">comments</NavLink>
-        <NavLink url="#show">show</NavLink>
-        <NavLink url="#aks">aks</NavLink>
-        <NavLink url="#jobs">span</NavLink>
-         */
+const Nav = () => (
+    <div className="navbar-menu">
+        <div className="navbar-start">{items}</div>
+    </div>
+);
 
 export default Nav;
