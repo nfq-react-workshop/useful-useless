@@ -17,6 +17,8 @@
     },
     "homepage": "https://github.com/nfq-react-workshop/useful-useless#readme",
     "dependencies": {
+        "bulma": "^0.7.2",
+        "prop-types": "^15.6.2",
         "react": "^16.6.0",
         "react-dom": "^16.6.0"
     },
@@ -28,7 +30,9 @@
         "eslint-plugin-prettier": "^3.0.0",
         "eslint-plugin-react": "^7.11.1",
         "parcel": "^1.10.3",
+        "postcss-modules": "^1.4.1",
         "prettier": "^1.14.3",
+        "sass": "^1.14.3",
         "stylelint": "^9.7.1",
         "stylelint-config-recommended": "^2.1.0"
     },
