@@ -259,3 +259,14 @@ const pages = [
 ];
 ```
 ### 3. <a name="styling"></a> Styling
+Naudosime [bulma](https://bulma.io) css framework. Tam reikės įsidiegti kelis dependencies.
+```sh
+npm install sass -D
+npm install postcss-modules -D
+npm install bulma
+```
+```jsx
+// src/main.jsx
+import 'bulma/css/bulma.css';
+```
+`postcss-modules` leidžia turėti [`css modules`](https://github.com/css-modules/css-modules) patogumus. Galime turėti `scss` failą kiekvienam komponentui su bet kokiais klasių selektoriais ir `css-modules` užtikrins kad klasės yra unikalios.
