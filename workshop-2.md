@@ -22,7 +22,7 @@ Brolis → brolis | Naudojame ir callbacks ir `props`
 
 React yra įprasta nurodyti, kokių tipų props komponentas tikisi. Tam naudojam [`propTypes`](https://www.npmjs.com/package/prop-types). Daugiau apie tai [propTypes dokumentacijoje](https://reactjs.org/docs/typechecking-with-proptypes.html)
 ```sh
-npm install prop-types --save-dev
+npm install prop-types
 ```
 
 Primityvų perdavimas
