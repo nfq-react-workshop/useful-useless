@@ -20,6 +20,11 @@ Brolis → brolis | Naudojame ir callbacks ir `props`
 #### 1.1 `Props`
 Šis terminas bus vienas iš dažniausiai naudojamų ir girdimų, kai kalbėsitės su kolėgomis apie react. `Props` yra įprastas JavaScript objektas.
 
+React yra įprasta nurodyti, kokių tipų props komponentas tikisi. Tam naudojam [`propTypes`](https://www.npmjs.com/package/prop-types). Daugiau apie tai [propTypes dokumentacijoje](https://reactjs.org/docs/typechecking-with-proptypes.html)
+```sh
+npm install prop-types --save-dev
+```
+
 Primityvų perdavimas
 ```js
 const Button = (props) => (
