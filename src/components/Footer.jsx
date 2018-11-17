@@ -16,12 +16,15 @@ const links = [
 ];
 
 const Footer = () => (
-    <footer>
-        {links.map(({ url, title }) => (
-            <a key={url} href={url}>
-                {title}
-            </a>
-        ))}
+    <footer className="footer">
+        <div className="content">
+            {links.map(({ url, title }) => (
+                <React.Fragment key={url}>
+                    <a href={url}>{title}</a>
+                    <br />
+                </React.Fragment>
+            ))}
+        </div>
     </footer>
 );
 

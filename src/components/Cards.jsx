@@ -17,7 +17,7 @@ const items = [
 ];
 
 const Cards = () => (
-    <div>
+    <div className="">
         {items.map((item, index) => (
             <Card key={item.url} {...item} number={index + 1} />
         ))}

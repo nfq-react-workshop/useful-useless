@@ -2,22 +2,34 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 
 const Card = ({ url, title, user, comments_count, number }) => (
-    <article className="card">
-        <div className="card-content">
-            <div className="content">
-                <a rel="noopener noreferrer" target="_blank" href={url}>{`${number}. ${title}`}</a>
+    <div className="columns is-mobile">
+        <div className="column is-narrow">
+            <span className="tag is-rounded is-large">{number}</span>
+        </div>
+        <div className="column">
+            <div className="columns">
+                <div className="column">
+                    <strong>
+                        <a rel="noopener noreferrer" target="_blank" href={url}>
+                            {title}
+                        </a>
+                    </strong>
+                </div>
+                <div className="column">
+                    some time ago&nbsp;
+                    <a href={`#by${user}`}>{`by ${user}`}</a>
+                </div>
             </div>
         </div>
-
-        <footer className="card-footer">
-            <a href={`#by${user}`} className="card-footer-item">
-                {`by ${user}`}
+        <div className="column is-narrow">
+            <a href="#comments">
+                <span className="icon">
+                    <i className="fas fa-comments" />
+                </span>
+                <span>{comments_count}</span>
             </a>
-            <a href="#comments" className="card-footer-item">
-                {`${comments_count} comments`}
-            </a>
-        </footer>
-    </article>
+        </div>
+    </div>
 );
 
 Card.propTypes = {

@@ -7,10 +7,13 @@ import Pager from './Pager';
 const Layout = () => (
     <div className="container">
         <Menu />
-        <hr />
         <main>
-            <Cards />
-            <Pager />
+            <section className="section">
+                <Cards />
+            </section>
+            <section className="section">
+                <Pager />
+            </section>
         </main>
         <Footer />
     </div>
