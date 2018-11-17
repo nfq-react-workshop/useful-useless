@@ -324,6 +324,14 @@ Panaudokime mūsų nująjį layout 404 Route komponentui
 
 # 2. React lifecycle metodai
 
-# 3. DOM eventai ir `this
+## 2.1 componentDidMount
+
+## 2.2 componentDidUpdate
+
+## 2.3 componentWillUnmount
+
+## 2.4 shouldComponentUpdate
+
+# 3. DOM eventai ir `this`
 
 # 4. Darbas su eventais
