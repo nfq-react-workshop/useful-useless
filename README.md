@@ -28,7 +28,7 @@ Apie ką nebus:
     * CSS prijungimas prie app
 3. Lapkričio 19 d. (Kaune) ir lapkričio 21 d. (Vilniuje) 
     * Routing
-    * React life cycle galimybės
+    * React lifecycle metodai
     * DOM eventai ir `this`
     * Darbas su eventais
 4. Lapkričio 26 d. (Kaune) ir lapkričio 28 d. (Vilniuje) 
