@@ -6,6 +6,7 @@ Praeitoje paskaitoje sukūrėme komponentus vienam projekto puslapiui ir pritaik
 1. [Routing](#routing)
 2. [React life cycle](#life)
 3. [DOM events](#dom)
+4. [State](#state)
 
 ### 1. <a name="routing"></a> Routing
 
@@ -95,3 +96,47 @@ Button.propTypes = {
     onClick: PropTypes.func
 };
 ```
+
+### 4. <a name="state"></a> State
+
+React komponentai turi `state` objektą, į kurio pasikeitimus reaguoja ir persirenderina. By default objekto reikšmė yra `undefined`. `state` objektas yra read-only ir jį pasiekti galime per `this.state`;
+```js
+const Button extends React.Component {
+    render() {
+        return <button disabled={!this.state.isEnabled}>Click me</button>
+    }
+}
+```
+#### 4.1 `setState`
+`setState` yra React.Component klasės metodas, kuris yra vienintelis būdas norint pakeisti `state`. Jis turi kelis skirtingus iškvietimo būdus.
+```js
+// this.state = { isEnabled: true };
+this.setState({
+    isEnabled: false
+});
+```
+Jeigu pirmas argumentas yra objektas, React atliks `Object.assign` arba kitaip `{ ...statet, ...newState }`. Tai mums leidžia keisti tiek vieną state atributą
+```js
+// this.state = { isEnabled: true };
+this.setState({ isActive: false });
+// this.state = { isEnabled: true, isActive: false }
+```
+Kitas būdas pakviesti `setState` yra perduoti funkciją į pirmą jos argumentą. Perduotą funkciją React išvkies su dabartiniu state
+```js
+this.setState((prevState) =>
+    ({
+        ...prevState,
+        isActive: false
+    })
+)
+```
+#### 4.2 Asinchroniškumas
+React negarantuoja, kad `setState` metodas `state` pakeis sinchroniškai. Todėl reikia visuomet laikyti, kad tai vyks asinchroniškai. Norint žinoti tašką, kuriame `state` jau pakeistas reikia perduoti `setState` metodui antrą argumentą `callback`;
+```js
+this.setState(
+    { isActive: false},
+    () => {
+        console.log(this.state.isActive);
+        // 100% false
+    }
+)
