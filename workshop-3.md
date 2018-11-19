@@ -326,12 +326,255 @@ Panaudokime mūsų nująjį layout 404 Route komponentui
 
 ## 2.1 componentDidMount
 
+Funckija iškviečiama iš karto kai React komponentas yra pirmą kartą įkeliamas
+į DOM. Šiame metode galime atlikti įvairias inicializacijas, arba atlikti
+DOM manipuliacijas (pvz. pridėti klasę ant `<body>` elemento).
+
 ## 2.2 componentDidUpdate
+
+Ši funkcija iškviečiama kai komponento props (arba state - apie tai sužinosime
+vėliau) atsinaujina. Tai puiki vieta atlikti props modifikacijoms (pvz. vieno
+iš props datos formatavimas) arba papildomoms DOM manipuliacijoms.
 
 ## 2.3 componentWillUnmount
 
+Funkcija iškviečiama prieš komponentą išimant iš DOM. Tai gera vieta
+nutraukti intervalus ar išvalyti kitus resursus iš atminties. 
+
 ## 2.4 shouldComponentUpdate
+
+Šioje funkcijoje galime nuspręsti ar komponentas turėtų atsinaujinti.
+Dažniausiai ši funkcija nėra naudojama, tačiau speceliais scenarijais
+kai pvz. tam tikro prop pasikeitimas sukelia per daug re-render'ių galime
+jo reikšmę patikrinti ir atitinkamai atiduoti boolean value kuris ir nuspręs
+ar komponentas bus atnaujintas.
+
+## 2.5 Susikurkime Item komponentą
+
+> src/components/Item/Item.jsx
+```js
+import * as React from 'react';
+
+import styles from './Item.scss';
+
+import './Cover.scss';
+
+export class Item extends React.Component {
+  componentDidMount() {
+    WindowTools.setBodyImage(this.props.item.image);
+  }
+
+  componentWillUnmount() {
+    WindowTools.setBodyImage(null);
+  }
+
+  render() {
+    const {
+      item: { title, subtitle, description },
+    } = this.props;
+
+    return (
+      <div>
+        <div className={styles.imageSpacer} />
+        <h1 className={`title ${styles.isSuper}`}>{title}</h1>
+        <p className={`subtitle ${styles.isHighlighted}`}>{subtitle}</p>
+        <div className={`card ${styles.spacedBottom}`}>
+          <div className="card-content">
+            <div className="content">
+              <div>{description}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+```
+
+> src/components/Item/Item.scss
+```css
+.imageSpacer {
+  height: 70vh;
+}
+
+.isSuper {
+  color: white !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+  font-size: 6rem !important;
+}
+
+.isHighlighted {
+  background-color: #00d1b2;
+  padding: 3px 8px;
+  display: inline-block;
+  color: white !important;
+}
+
+.spacedBottom {
+  margin-bottom: 2rem;
+}
+```
+
+> src/components/Item/Cover.scss
+```css
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding-top: 3.25rem;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position-y: 3.25rem;
+  background-position-x: center;
+}
+```
+
+Susikurkime puslapį kuriame atvaizduosime mūsų naująjį Item komponentą
+
+> src/pages/Item/ItemPage.jsx
+```js
+import * as React from 'react';
+
+import { Item } from '../../components/Item/Item';
+
+export class ItemPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.mockItem = {
+      id: 1,
+      title: 'test',
+      image: 'https://www.supercars.net/blog/wp-content/uploads/2016/12/Ferrari-LaFerrari.jpg',
+      subtitle: 'Test subtitle',
+      description: 'Test description',
+    };
+  }
+
+  render() {
+    return <Item item={this.mockItem} />;
+  }
+}
+```
+
+Sukurtkime naują Route naujajam Item puslapiui
+
+> src/root/App.jsx
+```js
+import { ItemPage } from '../pages/Item/ItemPage';
+```
+```js
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={LandingPage} layout={LandingLayout} />
+          <Route exact path="/item/:id" component={ItemPage} layout={CleanLayout} />
+          <Route component={NotFoundPage} layout={CleanLayout} />
+        </Switch>
+      </Router>
+    );
+  }
+```
+
+Atkreipkime dėmesį į `:id` kurį įrašėme į Route path - tai route path
+kintamasis. Kintamuosius galime pasiekti iš komponento ir pagal tai spręsti 
+koks įrašas bus atvaizduotas.
+
+Pirmiausia susikurkime daugiau įrašų
+
+> src/mocks/data.json
+
+https://raw.githubusercontent.com/nfq-react-workshop/useful-useless/workshop-3/src/mocks/data.json
+
+Panaudokime naujuosius įrašus Landing puslapyje
+
+> src/pages/Landing/LandingPage.jsx
+```js
+import mock from '../../mocks/data';
+
+...
+
+<ItemList items={mock.items} />
+```
+
+Taip pat panaudokime šiuos įrašus ir mūsų Item puslapyje surasdami tinkamą
+įrašą pagal route path kintamąjį kurį pasieksime per `this.props.match`
+
+> src/pages/Item/ItemPage.jsx
+ ```js
+import * as React from 'react';
+
+import { Item } from '../../components/Item/Item';
+
+import mock from '../../mocks/data';
+
+export class ItemPage extends React.Component {
+  render() {
+    const { match } = this.props;
+
+    const item = mock.items.find(i => i.id === match.params.id);
+
+    return <Item item={item} />;
+  }
+}
+```
 
 # 3. DOM eventai ir `this`
 
+React'e DOM eventai naudojami labai panašiai kaip ir įprastame HTML.
+Ant elemento rašome `on*` (* bet koks DOM eventas, pvz: click) ir
+priskiriame funkciją. Ši funkcija bus iškviesta įvykus laukiamam veiksmui.
+
+Pridėkime click eventą į mūsų Item komponentą:
+
+> src/components/Item/Item.jsx
+
+```js
+  onSpacerClick() {
+    WindowTools.invertBodyImage();
+  }
+```
+
+```js
+  render() {
+    ...
+  
+    return (
+      <div>
+        <div className={styles.imageSpacer} onClick={this.onSpacerClick} />
+        ...
+      </div>
+    );  
+  }
+```
+
+Pridėkime šią funkciją į WindowTools helper klasę
+
+> src/services/Utils/WindowTools.js
+```js
+  static invertBodyImage() {
+    document.body.style.filter = 'grayscale(100%)';
+  }
+```
+
 # 4. Darbas su eventais
+
+Į kiekvieną event handler'į gauname Event objektą. Šiame objekte galime
+rasti įvairių naudingų funkcijų bei properčių.
+
+## 4.1 preventDefault
+
+Sustabdo standartinių naršyklės funkcijų vykdymą, pvz. klausydami click 
+evento ant `<a>` elemento ir iškvietę šią funkciją galime sustabdyti
+naršyklės navigaciją į `href` nurodytą ant `<a>` elemento.
+
+## 4.2 stopPropagation
+
+Iškvietę šią funckiją galime sustabdyti eventų "bubble'inimąsi" per DOM medį.
+
+## 4.3 target
+
+Šiame propertyje rasime DOM elementą kuris ir iššaukė mūsų klusomą event'ą.

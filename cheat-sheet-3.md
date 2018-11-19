@@ -194,3 +194,170 @@ export class CleanLayout extends React.Component {
   border: none;
 }
 ```
+
+## 1.11 src/components/Item/Item.jsx
+```js
+import * as React from 'react';
+
+import styles from './Item.scss';
+
+import './Cover.scss';
+
+export class Item extends React.Component {
+  componentDidMount() {
+    WindowTools.setBodyImage(this.props.item.image);
+  }
+
+  componentWillUnmount() {
+    WindowTools.setBodyImage(null);
+  }
+
+  render() {
+    const {
+      item: { title, subtitle, description },
+    } = this.props;
+
+    return (
+      <div>
+        <div className={styles.imageSpacer} />
+        <h1 className={`title ${styles.isSuper}`}>{title}</h1>
+        <p className={`subtitle ${styles.isHighlighted}`}>{subtitle}</p>
+        <div className={`card ${styles.spacedBottom}`}>
+          <div className="card-content">
+            <div className="content">
+              <div>{description}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+```
+
+## 1.12 src/components/Item/Item.scss
+```css
+.imageSpacer {
+  height: 70vh;
+}
+
+.isSuper {
+  color: white !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
+  font-size: 6rem !important;
+}
+
+.isHighlighted {
+  background-color: #00d1b2;
+  padding: 3px 8px;
+  display: inline-block;
+  color: white !important;
+}
+
+.spacedBottom {
+  margin-bottom: 2rem;
+}
+```
+
+## 1.13 src/components/Item/Cover.scss
+```css
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  padding-top: 3.25rem;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position-y: 3.25rem;
+  background-position-x: center;
+}
+```
+
+## 1.14 src/pages/Item/ItemPage.jsx
+```js
+import * as React from 'react';
+
+import { Item } from '../../components/Item/Item';
+
+export class ItemPage extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.mockItem = {
+      id: 1,
+      title: 'test',
+      image: 'https://www.supercars.net/blog/wp-content/uploads/2016/12/Ferrari-LaFerrari.jpg',
+      description: 'Test description',
+    };
+  }
+
+  render() {
+    return <Item item={this.mockItem} />;
+  }
+}
+```
+
+## 1.15 src/root/App.jsx
+```js
+import { ItemPage } from '../pages/Item/ItemPage';
+
+...
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path="/" component={LandingPage} layout={LandingLayout} />
+          <Route exact path="/item/:id" component={ItemPage} layout={CleanLayout} />
+          <Route component={NotFoundPage} layout={CleanLayout} />
+        </Switch>
+      </Router>
+    );
+  }
+```
+
+## 1.16 src/mocks/data.json
+
+https://raw.githubusercontent.com/nfq-react-workshop/useful-useless/workshop-3/src/mocks/data.json
+
+## 1.17 src/pages/Item/ItemPage.jsx
+ ```js
+import * as React from 'react';
+
+import { Item } from '../../components/Item/Item';
+
+import mock from '../../mocks/data';
+
+export class ItemPage extends React.Component {
+  render() {
+    const { match } = this.props;
+
+    const item = mock.items.find(i => i.id === match.params.id);
+
+    return <Item item={item} />;
+  }
+}
+```
+
+## 1.18 src/components/Item/Item.jsx
+```js
+  onSpacerClick() {
+    WindowTools.invertBodyImage();
+  }
+  
+  ...
+
+  render() {
+    ...
+  
+    return (
+      <div>
+        <div className={styles.imageSpacer} onClick={this.onSpacerClick} />
+        ...
+      </div>
+    );  
+  }
+```
