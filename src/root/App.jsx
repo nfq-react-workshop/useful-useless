@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Route } from './Route';
 
 import { LandingPage } from '../pages/Landing/LandingPage';
+import { ItemPage } from '../pages/Item/ItemPage';
 import { NotFoundPage } from '../pages/NotFound/NotFoundPage';
 import { LandingLayout } from '../layouts/Landing/LandingLayout';
 import { CleanLayout } from '../layouts/Clean/CleanLayout';
@@ -17,6 +18,7 @@ export default class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} layout={LandingLayout} />
+          <Route exact path="/item/:id" component={ItemPage} layout={CleanLayout} />
           <Route component={NotFoundPage} layout={CleanLayout} />
         </Switch>
       </Router>

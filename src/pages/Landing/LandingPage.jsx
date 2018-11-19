@@ -3,24 +3,13 @@ import * as React from 'react';
 import { FloatingButton } from '../../components/FloatingButton/FloatingButton';
 import { ItemList } from '../../components/ItemList/ItemList';
 
+import mock from '../../mocks/data';
+
 export class LandingPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.mockItems = [
-      {
-        id: 1,
-        title: 'test',
-        image: 'http://placehold.it/640x480',
-        description: 'Test description',
-      },
-    ];
-  }
-
   render() {
     return (
       <React.Fragment>
-        <ItemList items={this.mockItems} />
+        <ItemList items={mock.items} />
         <FloatingButton to="/item/create" />
       </React.Fragment>
     );
