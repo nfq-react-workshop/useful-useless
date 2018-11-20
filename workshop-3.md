@@ -432,6 +432,18 @@ body {
 }
 ```
 
+Susikurkime tr8kstamą WindowTools helper klasę
+
+> src/services/Utils/WindowTools.js
+
+```js
+export class WindowTools {
+  static setBodyImage(image) {
+    document.body.style.backgroundImage = image ? `url("${image}")` : null;
+  }
+}
+```
+
 Susikurkime puslapį kuriame atvaizduosime mūsų naująjį Item komponentą
 
 > src/pages/Item/ItemPage.jsx

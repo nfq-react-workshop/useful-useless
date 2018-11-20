@@ -235,7 +235,17 @@ export class Item extends React.Component {
 }
 ```
 
-## 1.12 src/components/Item/Item.scss
+## 1.12 src/services/Utils/WindowTools.js
+
+```js
+export class WindowTools {
+  static setBodyImage(image) {
+    document.body.style.backgroundImage = image ? `url("${image}")` : null;
+  }
+}
+```
+
+## 1.13 src/components/Item/Item.scss
 ```css
 .imageSpacer {
   height: 70vh;
@@ -259,7 +269,7 @@ export class Item extends React.Component {
 }
 ```
 
-## 1.13 src/components/Item/Cover.scss
+## 1.14 src/components/Item/Cover.scss
 ```css
 html {
   height: 100%;
@@ -276,7 +286,7 @@ body {
 }
 ```
 
-## 1.14 src/pages/Item/ItemPage.jsx
+## 1.15 src/pages/Item/ItemPage.jsx
 ```js
 import * as React from 'react';
 
@@ -300,7 +310,7 @@ export class ItemPage extends React.Component {
 }
 ```
 
-## 1.15 src/root/App.jsx
+## 1.16 src/root/App.jsx
 ```js
 import { ItemPage } from '../pages/Item/ItemPage';
 
@@ -319,11 +329,11 @@ import { ItemPage } from '../pages/Item/ItemPage';
   }
 ```
 
-## 1.16 src/mocks/data.json
+## 1.17 src/mocks/data.json
 
 https://raw.githubusercontent.com/nfq-react-workshop/useful-useless/workshop-3/src/mocks/data.json
 
-## 1.17 src/pages/Item/ItemPage.jsx
+## 1.18 src/pages/Item/ItemPage.jsx
  ```js
 import * as React from 'react';
 
@@ -342,7 +352,7 @@ export class ItemPage extends React.Component {
 }
 ```
 
-## 1.18 src/components/Item/Item.jsx
+## 1.19 src/components/Item/Item.jsx
 ```js
   onSpacerClick() {
     WindowTools.invertBodyImage();
@@ -359,5 +369,12 @@ export class ItemPage extends React.Component {
         ...
       </div>
     );  
+  }
+```
+
+## 1.20 src/services/Utils/WindowTools.js
+```js
+  static invertBodyImage() {
+    document.body.style.filter = 'grayscale(100%)';
   }
 ```
