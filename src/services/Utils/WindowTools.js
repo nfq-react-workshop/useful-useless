@@ -4,6 +4,6 @@ export class WindowTools {
   }
 
   static invertBodyImage() {
-    document.body.style.filter = 'grayscale(100%';
+    document.body.style.filter = 'grayscale(100%)';
   }
 }

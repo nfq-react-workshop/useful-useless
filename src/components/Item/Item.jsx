@@ -14,7 +14,7 @@ export class Item extends React.Component {
     WindowTools.setBodyImage(null);
   }
 
-  onSpacerClick() {
+  static onSpacerClick() {
     WindowTools.invertBodyImage();
   }
 
@@ -25,7 +25,7 @@ export class Item extends React.Component {
 
     return (
       <div>
-        <div className={styles.imageSpacer} onClick={this.onSpacerClick} />
+        <div className={styles.imageSpacer} onClick={Item.onSpacerClick} role="presentation" />
         <h1 className={`title ${styles.isSuper}`}>{title}</h1>
         <p className={`subtitle ${styles.isHighlighted}`}>{subtitle}</p>
         <div className={`card ${styles.spacedBottom}`}>
