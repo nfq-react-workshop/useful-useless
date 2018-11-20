@@ -432,7 +432,7 @@ body {
 }
 ```
 
-Susikurkime tr8kstamą WindowTools helper klasę
+Susikurkime trūkstamą WindowTools helper klasę
 
 > src/services/Utils/WindowTools.js
 
