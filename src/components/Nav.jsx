@@ -1,25 +1,26 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import NavLink from './NavLink';
 
 const menuItems = [
     {
-        url: '#new',
+        url: '/news',
         label: 'new',
     },
     {
-        url: '#comments',
+        url: '/comments',
         label: 'comments',
     },
     {
-        url: '#show',
+        url: '/show',
         label: 'show',
     },
     {
-        url: '#aks',
-        label: 'aks',
+        url: '/ask',
+        label: 'ask',
     },
     {
-        url: '#jobs',
+        url: '/jobs',
         label: 'jobs',
     },
 ];
@@ -32,10 +33,14 @@ const items = menuItems.map(function(item) {
     );
 });
 
-const Nav = () => (
-    <div className="navbar-menu">
+const Nav = ({ isActive }) => (
+    <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
         <div className="navbar-start">{items}</div>
     </div>
 );
+
+Nav.propTypes = {
+    isActive: PropTypes.bool.isRequired,
+};
 
 export default Nav;

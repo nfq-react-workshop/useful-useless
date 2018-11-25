@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const NavLink = props => (
-    <a className="navbar-item" href={props.url}>
+    <Link className="navbar-item" to={props.url}>
         {props.children}
-    </a>
+    </Link>
 );
 
 NavLink.propTypes = {
