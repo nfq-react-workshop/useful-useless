@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "./node_modules/.bin/parcel src/index.html"
+        "start": "./node_modules/.bin/parcel --no-autoinstall src/index.html"
     },
     "repository": {
         "type": "git",
@@ -20,7 +20,9 @@
         "bulma": "^0.7.2",
         "prop-types": "^15.6.2",
         "react": "^16.6.0",
-        "react-dom": "^16.6.0"
+        "react-dom": "^16.6.0",
+        "react-router": "^4.3.1",
+        "react-router-dom": "^4.3.1"
     },
     "devDependencies": {
         "babel-eslint": "^10.0.1",
