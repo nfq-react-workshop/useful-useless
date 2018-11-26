@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-export function withFetch(Component, dataType) {
+export function withFetch(Component, generateRoute) {
     class WithFetch extends React.Component {
         constructor(props) {
             super(props);
@@ -38,7 +38,7 @@ export function withFetch(Component, dataType) {
         fetchItems() {
             const page = Number(this.props.match.params.page) || 1;
             this.setState({ isFetching: true });
-            fetch(`https://api.hnpwa.com/v0/${dataType}/${page}.json`)
+            fetch(`https://api.hnpwa.com/v0${generateRoute(this.props)}`)
                 .then(response => response.json())
                 .then(this.receiveItems);
         }

@@ -27,4 +27,4 @@ Cards.propTypes = {
     isFetching: PropTypes.bool,
 };
 
-export default withRouter(withFetch(Cards, 'news'));
+export default withRouter(withFetch(Cards, ({ match }) => `/news/${match.params.page || 1}.json`));

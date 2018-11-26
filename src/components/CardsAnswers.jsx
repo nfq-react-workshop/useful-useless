@@ -27,4 +27,6 @@ CardsAnswers.propTypes = {
     isFetching: PropTypes.bool,
 };
 
-export default withRouter(withFetch(CardsAnswers, 'ask'));
+export default withRouter(
+    withFetch(CardsAnswers, ({ match }) => `/ask/${match.params.page || 1}.json`),
+);
