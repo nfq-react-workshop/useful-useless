@@ -1,29 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Comment from './Comment';
-
-const comments = [
-    {
-        id: 1,
-        content: 'lorem ipsum',
-        comments: [
-            {
-                id: 2,
-                content: '2 asdasd ',
-                comments: [
-                    {
-                        id: 5,
-                        content: '5 asasdd ',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        id: 3,
-        content: 'dolor',
-    },
-];
+import Comments from './Comments';
 
 class Card extends React.Component {
     constructor(props) {
@@ -36,7 +13,7 @@ class Card extends React.Component {
     }
 
     render() {
-        const { title, number, url, user, comments_count } = this.props;
+        const { id, title, number, url, user, comments_count } = this.props;
         return (
             <div className="columns">
                 <div className="columns is-mobile">
@@ -67,11 +44,7 @@ class Card extends React.Component {
                         </a>
                     </div>
                 </div>
-                {this.state.isCommentsVisible && (
-                    <div className="column">
-                        <Comment comments={comments} />
-                    </div>
-                )}
+                {this.state.isCommentsVisible && <Comments itemId={id} />}
             </div>
         );
     }
@@ -84,6 +57,7 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
+    id: PropTypes.string,
     url: PropTypes.string,
     title: PropTypes.string,
     user: PropTypes.string,
