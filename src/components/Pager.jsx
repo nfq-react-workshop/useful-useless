@@ -17,14 +17,6 @@ class Pager extends React.Component {
         this.handleMouseOver = this.handleMouseOver.bind(this);
     }
 
-    componentDidMount() {
-        console.log('did mount');
-    }
-
-    componentWillUnmount() {
-        console.log('will unmount');
-    }
-
     shouldComponentUpdate(nextProps) {
         return this.props.page !== nextProps.page;
     }
@@ -34,7 +26,7 @@ class Pager extends React.Component {
     }
 
     render() {
-        const { page } = this.props;
+        const { page, dataType, maxPages } = this.props;
         return (
             <nav
                 className="pagination"
@@ -43,47 +35,29 @@ class Pager extends React.Component {
                 onMouseOver={this.handleMouseOver}
             >
                 <Link
-                    to={`/news/${Math.max(Number(page) - 1, 1)}`}
+                    to={`/${dataType}/${Math.max(Number(page) - 1, 1)}`}
                     className="pagination-previous"
                     title="This is the first page"
                     disabled={Number(page) <= 1}
                 >
                     Previous
                 </Link>
-                <Link to={`/news/${Number(page) + 1}`} className="pagination-next">
+                <Link to={`/${dataType}/${Number(page) + 1}`} className="pagination-next">
                     Next page
                 </Link>
                 <ul className="pagination-list">
-                    <li>
-                        <Link
-                            to="/news/1"
-                            className={`pagination-link ${getCurrentClass(1, page)}`}
-                            aria-label="Page 1"
-                            {...getCurrentAttributes(1, page)}
-                        >
-                            1
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/news/2"
-                            className={`pagination-link ${getCurrentClass(2, page)} `}
-                            aria-label="Goto page 2"
-                            {...getCurrentAttributes(2, page)}
-                        >
-                            2
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/news/3"
-                            className={`pagination-link ${getCurrentClass(3, page)}`}
-                            aria-label="Goto page 3"
-                            {...getCurrentAttributes(3, page)}
-                        >
-                            3
-                        </Link>
-                    </li>
+                    {[...Array(maxPages)].map((i, n) => (
+                        <li key={n + 1}>
+                            <Link
+                                to={`/${dataType}/${n + 1}`}
+                                className={`pagination-link ${getCurrentClass(n + 1, page)}`}
+                                aria-label={`Page ${n + 1}`}
+                                {...getCurrentAttributes(n + 1, page)}
+                            >
+                                {n + 1}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </nav>
         );
@@ -92,10 +66,13 @@ class Pager extends React.Component {
 
 Pager.defaultProps = {
     page: '1',
+    dataType: 'news',
 };
 
 Pager.propTypes = {
     page: PropTypes.string,
+    dataType: PropTypes.string,
+    maxPages: PropTypes.number,
 };
 
 export default Pager;

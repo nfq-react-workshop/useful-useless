@@ -1,7 +1,8 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 export function withFetch(Component, dataType) {
-    return class extends React.Component {
+    class WithFetch extends React.Component {
         constructor(props) {
             super(props);
 
@@ -48,5 +49,15 @@ export function withFetch(Component, dataType) {
                 isFetching: false,
             });
         }
+    }
+
+    WithFetch.propTypes = {
+        match: PropTypes.any,
+        location: PropTypes.any,
+        history: PropTypes.any,
     };
+
+    WithFetch.displayName = `withFetch(${Component.displayName || Component.name || 'Component'})`;
+
+    return WithFetch;
 }

@@ -4,11 +4,11 @@ import Card from './Card';
 import { withFetch } from '../hoc/withFetch';
 import { withRouter } from 'react-router';
 
-const Cards = ({ isFetching, items, match }) =>
+const CardsAnswers = ({ isFetching, items, match }) =>
     isFetching ? (
         <div>is loading</div>
     ) : (
-        <div className="">
+        <div className="ask">
             {items.map((item, index) => (
                 <Card
                     key={item.url}
@@ -19,7 +19,7 @@ const Cards = ({ isFetching, items, match }) =>
         </div>
     );
 
-Cards.propTypes = {
+CardsAnswers.propTypes = {
     match: PropTypes.any,
     location: PropTypes.any,
     history: PropTypes.any,
@@ -27,4 +27,4 @@ Cards.propTypes = {
     isFetching: PropTypes.bool,
 };
 
-export default withRouter(withFetch(Cards, 'news'));
+export default withRouter(withFetch(CardsAnswers, 'ask'));
