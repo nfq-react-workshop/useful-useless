@@ -31,7 +31,7 @@ class Card extends React.Component {
 
         this.handleCommentsClick = this.handleCommentsClick.bind(this);
         this.state = {
-            isCommentsVisible: true,
+            isCommentsVisible: false,
         };
     }
 
@@ -59,7 +59,7 @@ class Card extends React.Component {
                         </div>
                     </div>
                     <div className="column is-narrow">
-                        <a href="#comments" onClick={this.handleCommentsClick}>
+                        <a onClick={this.handleCommentsClick}>
                             <span className="icon">
                                 <i className="fas fa-comments" />
                             </span>
@@ -67,9 +67,11 @@ class Card extends React.Component {
                         </a>
                     </div>
                 </div>
-                <div className="column">
-                    <Comment comments={comments} />
-                </div>
+                {this.state.isCommentsVisible && (
+                    <div className="column">
+                        <Comment comments={comments} />
+                    </div>
+                )}
             </div>
         );
     }
