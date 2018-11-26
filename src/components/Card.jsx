@@ -57,7 +57,7 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     url: PropTypes.string,
     title: PropTypes.string,
     user: PropTypes.string,

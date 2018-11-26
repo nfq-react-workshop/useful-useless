@@ -1,6 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
+import { withFetch } from '../hoc/withFetch';
+import { withRouter } from 'react-router';
 
 const comments = [
     {
@@ -25,10 +27,10 @@ const comments = [
     },
 ];
 
-const Comments = ({ itemId }) => (
+const Comments = ({ itemId, items }) => (
     <div className="column">
-        <Comment comments={comments} />
+        <Comment comments={items.comments} />
     </div>
 );
 
-export default Comments;
+export default withRouter(withFetch(Comments, ({ itemId }) => `/item/${itemId}.json`));

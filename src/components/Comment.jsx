@@ -4,12 +4,19 @@ import { commentsClass } from './Comment.scss';
 
 const Comment = ({ content, comments }) => (
     <ul className={commentsClass}>
-        {content}
+        <small
+            dangerouslySetInnerHTML={{
+                __html: content,
+            }}
+        />
+        <br />
         {comments &&
             comments.map(({ content, comments: childComments, id }) => (
-                <li key={id}>
-                    <Comment content={content} comments={childComments} />
-                </li>
+                <React.Fragment key={`comment-${id}`}>
+                    <li>
+                        <Comment content={content} comments={childComments} />
+                    </li>
+                </React.Fragment>
             ))}
     </ul>
 );
