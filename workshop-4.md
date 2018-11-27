@@ -397,7 +397,7 @@ export const ItemContainer = withData(ItemContainerComponent, {
 });
 ```
 
-# 6. Namų darbai
+# 6. Kas toliau?
 
 * Paversti likusius komponentus kuriems nereikia state į stateless
 functional komponentus
