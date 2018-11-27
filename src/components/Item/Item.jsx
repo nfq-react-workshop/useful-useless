@@ -6,6 +6,16 @@ import styles from './Item.scss';
 import './Cover.scss';
 
 export class Item extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      collapsed: false,
+    };
+
+    this.onSpacerClick = this.onSpacerClick.bind(this);
+  }
+
   componentDidMount() {
     WindowTools.setBodyImage(this.props.item.image);
   }
@@ -14,8 +24,11 @@ export class Item extends React.Component {
     WindowTools.setBodyImage(null);
   }
 
-  static onSpacerClick() {
-    WindowTools.invertBodyImage();
+  onSpacerClick() {
+    this.setState(prevState => ({
+      ...prevState,
+      collapsed: !prevState.collapsed,
+    }));
   }
 
   render() {
@@ -25,7 +38,11 @@ export class Item extends React.Component {
 
     return (
       <div>
-        <div className={styles.imageSpacer} onClick={Item.onSpacerClick} role="presentation" />
+        <div
+          className={`${styles.imageSpacer} ${this.state.collapsed ? styles.collapsed : ''}`}
+          onClick={this.onSpacerClick}
+          role="presentation"
+        />
         <h1 className={`title ${styles.isSuper}`}>{title}</h1>
         <p className={`subtitle ${styles.isHighlighted}`}>{subtitle}</p>
         <div className={`card ${styles.spacedBottom}`}>

@@ -1,5 +1,7 @@
 .imageSpacer {
   height: 70vh;
+
+  transition: height 0.3s ease-out;
 }
 
 .isSuper {
@@ -17,4 +19,8 @@
 
 .spacedBottom {
   margin-bottom: 2rem;
+}
+
+.collapsed {
+  height: 10vh;
 }

@@ -4,7 +4,8 @@
   "description": "Sveikiname prisijungus prie React mokymų. Per keturias paskaitas lektoriai jums trumpai pristatys itin populiarią React biblioteką ir kitus šiuolaikinius frontend programavimo įrankius.",
   "scripts": {
     "start": "rimraf .cache && parcel src/index.html --open",
-    "build": "rimraf dist && parcel build src/index.html --no-cache --no-source-maps --detailed-report"
+    "build": "rimraf dist && parcel build src/index.html --no-cache --no-source-maps --detailed-report",
+    "server": "json-server --watch ./src/mocks/data.json"
   },
   "husky": {
     "hooks": {
@@ -33,8 +34,10 @@
   },
   "homepage": "https://github.com/nfq-react-workshop/useful-useless#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bulma": "^0.7.2",
     "font-awesome": "^4.7.0",
+    "json-server": "^0.14.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-router": "^4.3.1",
